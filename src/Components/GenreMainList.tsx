@@ -23,18 +23,17 @@ interface Props {
 }
 
 const GenreMainList = ({ handleClick, selectGenre }: Props) => {
-  const { dataList, error, loading } = useGenre();
+  const { data, error, isLoading } = useGenre();
   const arry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+  if (error) return <Heading p="8px">{error.message}</Heading>;
   return (
     <>
       <Heading pb="8px">Genre</Heading>
-
-      {loading &&
+      {isLoading &&
         arry.map((data) => (
           <Skeleton key={data * 100} height="40px" marginBottom={5}></Skeleton>
         ))}
-      {dataList.map((data) => (
+      {data?.map((data) => (
         <List key={data.id}>
           <HStack pb="5px" borderRadius="4px">
             <Image
