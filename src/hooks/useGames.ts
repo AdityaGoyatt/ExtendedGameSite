@@ -1,6 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import useHttp from "./useHttp";
 import { genre } from "./useGenre";
 import { gameQuery } from "../App";
+import axios from "axios";
+import apiClient from "./apiClient";
 
 export interface Platform {
   id: number;
@@ -17,19 +20,26 @@ export interface game {
   genres: Array<genre>;
   rating_top: number;
 }
+export interface DataResult {
+  count: number;
+  results: Array<game>;
+}
 
-const useGames = (gameQuery: gameQuery) =>
-  useHttp<game>(
-    "/games",
-    {
-      params: {
-        genres: gameQuery.genre?.id,
-        parent_platforms: gameQuery.platform?.id,
-        ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText,
-      },
-    },
-    [gameQuery]
-  );
+const useGame = (gameQuery: gameQuery) =>
+  useQuery<game[], Error>({
+    queryKey: gameQuery ? ["games", gameQuery] : ["games"],
+    queryFn: () =>
+      apiClient
+        .get<DataResult>("/games", {
+          params: {
+            genres: gameQuery.genre?.id,
+            parent_platforms: gameQuery.platform?.id,
+            ordering: gameQuery.sortOrder,
+            search: gameQuery.searchText,
+          },
+        })
+        .then((res) => res.data.results),
 
-export default useGames;
+    staleTime: 24 * 60 * 60 * 1000,
+  });
+export default useGame;
