@@ -4,6 +4,7 @@ import { genre } from "./useGenre";
 import { gameQuery } from "../App";
 import axios from "axios";
 import apiClient from "./apiClient";
+import { FetchResult } from "./dataInterface";
 
 export interface Platform {
   id: number;
@@ -20,17 +21,13 @@ export interface game {
   genres: Array<genre>;
   rating_top: number;
 }
-export interface DataResult {
-  count: number;
-  results: Array<game>;
-}
 
 const useGame = (gameQuery: gameQuery) =>
   useQuery<game[], Error>({
     queryKey: gameQuery ? ["games", gameQuery] : ["games"],
     queryFn: () =>
       apiClient
-        .get<DataResult>("/games", {
+        .get<FetchResult<game>>("/games", {
           params: {
             genres: gameQuery.genre?.id,
             parent_platforms: gameQuery.platform?.id,
