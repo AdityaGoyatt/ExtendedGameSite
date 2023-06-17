@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { genre } from "./useGenre";
 import { gameQuery } from "../App";
+import axios from "axios";
+import apiClient from "./apiClient";
 import { PlatformListItem } from "./usePlatforms";
-import useApiFetch from "./useApiFetch";
+import useApiFetch, { DataResult } from "./useApiFetch";
 
 export interface game {
   id: number;

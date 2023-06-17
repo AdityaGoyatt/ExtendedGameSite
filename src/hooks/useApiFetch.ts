@@ -13,7 +13,7 @@ class useApiFetch<T> {
   }
   getAll = (config: AxiosRequestConfig) => {
     return apiClient
-      .get<DataResult<T>>("/endpoint", config)
+      .get<DataResult<T>>(this.endpoint, config.params)
       .then((res) => res.data.results);
   };
 }
