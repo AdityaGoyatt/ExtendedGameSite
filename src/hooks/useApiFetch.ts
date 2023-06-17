@@ -3,6 +3,7 @@ import apiClient from "./apiClient";
 
 export interface DataResult<T> {
   count: number;
+  next: string | null;
   results: Array<T>;
 }
 

@@ -2,10 +2,9 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import { genre } from "./useGenre";
 import { gameQuery } from "../App";
-import axios from "axios";
 import apiClient from "./apiClient";
 import { PlatformListItem } from "./usePlatforms";
-import useApiFetch, { DataResult } from "./useApiFetch";
+import { DataResult } from "./useApiFetch";
 
 export interface game {
   id: number;
