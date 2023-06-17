@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import platformsData from "./platformsData";
-import apiClient from "./apiClient";
-import { FetchResult } from "./dataInterface";
+import useApiFetch from "./useApiFetch";
 
 export interface PlatformListItem {
   id: number;
@@ -9,14 +8,11 @@ export interface PlatformListItem {
   slug: string;
 }
 
-const fetchPlatforms = () =>
-  apiClient
-    .get<FetchResult<PlatformListItem>>("/platforms")
-    .then((res) => res.data.results);
+const { getAll } = new useApiFetch<PlatformListItem>("/platforms");
 export default () =>
   useQuery<PlatformListItem[], Error>({
     queryKey: ["platforms"],
-    queryFn: fetchPlatforms,
+    queryFn: getAll,
     staleTime: 24 * 60 * 60 * 1000,
     initialData: platformsData,
   });
