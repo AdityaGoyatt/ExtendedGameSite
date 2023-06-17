@@ -1,5 +1,3 @@
-import React from "react";
-import useHttp from "../hooks/useHttp";
 import useGenre, { genre } from "../hooks/useGenre";
 import {
   List,
