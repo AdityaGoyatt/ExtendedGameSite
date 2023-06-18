@@ -16,11 +16,12 @@ import {
 import getCropedImageUrl from "./services/image-url";
 
 interface Props {
-  handleClick: (genreId: genre) => void;
-  selectGenre: genre | null;
+  handleClick: (genreId: number, genreName: string) => void;
+
+  selectGenreId?: number | undefined;
 }
 
-const GenreMainList = ({ handleClick, selectGenre }: Props) => {
+const GenreMainList = ({ handleClick, selectGenreId }: Props) => {
   const { data, error, isLoading } = useGenre();
   const arry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return <Heading p="8px">{error.message}</Heading>;
@@ -43,10 +44,10 @@ const GenreMainList = ({ handleClick, selectGenre }: Props) => {
             <Button
               whiteSpace="normal"
               textAlign="left"
-              fontWeight={data === selectGenre ? "bold" : "normal"}
+              fontWeight={data.id === selectGenreId ? "bold" : "normal"}
               colorScheme="white"
               variant="link"
-              onClick={() => handleClick(data)}
+              onClick={() => handleClick(data.id, data.name)}
             >
               {data.name}
             </Button>

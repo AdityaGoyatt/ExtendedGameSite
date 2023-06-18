@@ -11,15 +11,18 @@ import { PlatformListItem } from "./hooks/usePlatforms";
 import SortSelector from "./Components/SortSelector";
 import GameHeading from "./Components/GameHeading";
 export interface gameQuery {
-  genre: genre | null;
-  platform: PlatformListItem | null;
+  genreId: number | undefined;
+  platformID: number | null;
   sortOrder: string;
   searchText: string;
 }
 
 function App() {
   const [gameQuery, setGameQuery] = useState<gameQuery>({} as gameQuery);
-
+  const [selectedProperties, setSelectedProperties] = useState({
+    genreName: "",
+    platformName: "",
+  });
   return (
     <Grid
       templateAreas={{
@@ -42,21 +45,31 @@ function App() {
       <Show above="lg">
         <GridItem p="2" area="aside" paddingX={5}>
           <GenreMainList
-            handleClick={(genre) => setGameQuery({ ...gameQuery, genre })}
-            selectGenre={gameQuery.genre}
+            handleClick={(genreId, genreName) => {
+              setGameQuery({ ...gameQuery, genreId: genreId });
+              setSelectedProperties({
+                ...selectedProperties,
+                genreName: genreName,
+              });
+            }}
+            selectGenreId={gameQuery.genreId}
           />
         </GridItem>
       </Show>
 
       <GridItem p="2" area="main">
         <Box paddingLeft={4}>
-          <GameHeading gameQuery={gameQuery} />
+          <GameHeading name={selectedProperties} />
           <HStack spacing={5} paddingLeft={4} marginBottom={4}>
             <PlatformSelector
-              selectedCurrentPlatform={gameQuery.platform}
-              handleClick={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
-              }
+              selectedCurrentPlatformName={selectedProperties.platformName}
+              handleClick={(platformId, platformName) => {
+                setGameQuery({ ...gameQuery, platformID: platformId });
+                setSelectedProperties({
+                  ...selectedProperties,
+                  platformName: platformName,
+                });
+              }}
             />
             <SortSelector
               currentOrder={gameQuery.sortOrder}
