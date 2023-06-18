@@ -1,4 +1,4 @@
-import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useGames, { game } from "../hooks/useGames";
 import GameCard from "./GameCard";
 import Skeletons from "./Skeletons";
@@ -33,8 +33,8 @@ const GameGrid = ({ gameQuery }: Props) => {
     <InfiniteScroll
       dataLength={fetchGameCount ? fetchGameCount : 0}
       next={fetchNextPage}
-      hasMore={true}
-      loader={<Text fontSize="3xl">Loading...</Text>}
+      hasMore={hasNextPage || false}
+      loader={<Spinner marginLeft={4} />}
       endMessage={
         <p style={{ textAlign: "center" }}>
           <b>Yay! You have seen it all</b>
