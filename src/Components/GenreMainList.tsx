@@ -16,7 +16,7 @@ import {
 import getCropedImageUrl from "./services/image-url";
 
 interface Props {
-  handleClick: (genre: genre) => void;
+  handleClick: (genreId: genre) => void;
   selectGenre: genre | null;
 }
 

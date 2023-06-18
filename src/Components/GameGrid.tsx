@@ -6,6 +6,7 @@ import { genre } from "../hooks/useGenre";
 
 import { gameQuery } from "../App";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   gameQuery: gameQuery;
@@ -23,9 +24,29 @@ const GameGrid = ({ gameQuery }: Props) => {
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return <Text>{error.message}</Text>;
 
+  const fetchGameCount = dataList?.pages.reduce(
+    (acc, res) => acc + res.results.length,
+    0
+  );
+
   return (
-    <Box p="10px" m={4}>
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={7}>
+    <InfiniteScroll
+      dataLength={fetchGameCount ? fetchGameCount : 0}
+      next={fetchNextPage}
+      hasMore={true}
+      loader={<Text fontSize="3xl">Loading...</Text>}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    >
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        spacing={7}
+        p="10px"
+        m={4}
+      >
         {isLoading && skeleton.map((data) => <Skeletons key={data} />)}
         {dataList?.pages.map((page, index) => (
           <React.Fragment key={index}>
@@ -35,12 +56,7 @@ const GameGrid = ({ gameQuery }: Props) => {
           </React.Fragment>
         ))}
       </SimpleGrid>
-      {hasNextPage && (
-        <Button marginTop={2} onClick={() => fetchNextPage()}>
-          {isFetchingNextPage ? "is Loading" : "Load More"}
-        </Button>
-      )}
-    </Box>
+    </InfiniteScroll>
   );
 };
 
