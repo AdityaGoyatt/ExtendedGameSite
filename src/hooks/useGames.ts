@@ -23,8 +23,8 @@ const useGame = (gameQuery: gameQuery) =>
       apiClient
         .get<DataResult<game>>("/games", {
           params: {
-            genres: gameQuery.genre?.id,
-            parent_platforms: gameQuery.platform?.id,
+            genres: gameQuery.genreId,
+            parent_platforms: gameQuery.platformID,
             ordering: gameQuery.sortOrder,
             search: gameQuery.searchText,
             page: pageParam,
