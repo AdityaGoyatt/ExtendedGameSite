@@ -2,26 +2,18 @@ import useGenre, { genre } from "../hooks/useGenre";
 import {
   List,
   HStack,
-  Text,
   Image,
   Heading,
-  Box,
-  Link,
-  Spinner,
   Skeleton,
-  SkeletonText,
   Button,
-  LinkBox,
 } from "@chakra-ui/react";
 import getCropedImageUrl from "./services/image-url";
+import useGameQuery from "./storeQuery";
+import useNameStore from "./storeNames";
 
-interface Props {
-  handleClick: (genreId: number, genreName: string) => void;
-
-  selectGenreId?: number | undefined;
-}
-
-const GenreMainList = ({ handleClick, selectGenreId }: Props) => {
+const GenreMainList = () => {
+  const { gameQuery, setGenreId } = useGameQuery();
+  const { setGenreName } = useNameStore();
   const { data, error, isLoading } = useGenre();
   const arry = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return <Heading p="8px">{error.message}</Heading>;
@@ -44,10 +36,13 @@ const GenreMainList = ({ handleClick, selectGenreId }: Props) => {
             <Button
               whiteSpace="normal"
               textAlign="left"
-              fontWeight={data.id === selectGenreId ? "bold" : "normal"}
+              fontWeight={data.id === gameQuery.genreId ? "bold" : "normal"}
               colorScheme="white"
               variant="link"
-              onClick={() => handleClick(data.id, data.name)}
+              onClick={() => {
+                setGenreId(data.id);
+                setGenreName(data.name);
+              }}
             >
               {data.name}
             </Button>

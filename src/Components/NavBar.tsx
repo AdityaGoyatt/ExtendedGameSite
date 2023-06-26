@@ -4,16 +4,11 @@ import logo from "./images/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchBar from "./SearchBar";
 
-interface Props {
-  handleClick: (searchText: string) => void;
-}
-
-interface Props {}
-const NavBAr = ({ handleClick }: Props) => {
+const NavBAr = () => {
   return (
     <HStack p={2} justifyContent="space-between">
       <Image src={logo} boxSize="60px"></Image>
-      <SearchBar handleClick={(searchText) => handleClick(searchText)} />
+      <SearchBar />
       <ColorModeSwitch />
     </HStack>
   );
