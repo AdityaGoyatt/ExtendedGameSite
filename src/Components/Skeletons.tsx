@@ -1,4 +1,4 @@
-import { SkeletonText, Box, Card, CardBody, Skeleton } from "@chakra-ui/react";
+import { SkeletonText, Card, CardBody, Skeleton } from "@chakra-ui/react";
 import CardLayout from "./CardLayout";
 
 const Skeletons = () => {
