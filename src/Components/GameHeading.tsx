@@ -1,12 +1,13 @@
-import { gameQuery } from "../App";
 import { Heading } from "@chakra-ui/react";
+import useNameStore from "./storeNames";
 export interface nameComponent {
   name: { genreName: string; platformName: string };
 }
 
-const GameHeading = ({ name }: nameComponent) => {
-  const dynamicHeading = `${name.platformName || ""} ${
-    name.genreName || ""
+const GameHeading = () => {
+  const { headingNames } = useNameStore();
+  const dynamicHeading = `${headingNames.platformName || ""} ${
+    headingNames.genreName || ""
   } Games`;
   return (
     <>
