@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, CanceledError } from "axios";
+import { AxiosRequestConfig } from "axios";
 import apiClient from "./apiClient";
 
 export interface DataResult<T> {

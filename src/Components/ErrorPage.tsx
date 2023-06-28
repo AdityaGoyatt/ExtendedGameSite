@@ -1,5 +1,4 @@
 import { Heading } from "@chakra-ui/react";
-import React from "react";
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 const ErrorPage = () => {

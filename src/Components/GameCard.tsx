@@ -1,4 +1,3 @@
-import React from "react";
 import { game } from "../hooks/useGames";
 
 import { Card, CardBody, Image, Heading, Text, HStack } from "@chakra-ui/react";
@@ -7,7 +6,7 @@ import CriticScore from "./CriticScore";
 import getCropedImageUrl from "./services/image-url";
 import CardLayout from "./CardLayout";
 import Emojis from "./Emojis";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Props {
   gameObject: game;

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Box, Grid, GridItem, Show, HStack } from "@chakra-ui/react";
 import GameGrid from "./Components/GameGrid";
 
