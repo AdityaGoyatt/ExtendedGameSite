@@ -1,17 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useApiFetch from "./useApiFetch";
+import { game } from "./useGames";
 
-interface gameData {
-  rating: number;
-  description_raw: string;
-  name: string;
-}
-
-const { get } = new useApiFetch<gameData>("/games");
+const { get } = new useApiFetch<game>("/games");
 
 const useGameDetails = (id: string) =>
-  useQuery<gameData, Error>({
-    queryKey: ["gameData"],
+  useQuery<game, Error>({
+    queryKey: ["gameData", id],
     queryFn: () => get(id),
   });
 
