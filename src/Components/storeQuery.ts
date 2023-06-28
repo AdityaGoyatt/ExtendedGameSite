@@ -1,28 +1,22 @@
 import { genre } from "./../hooks/useGenre";
 
 import { create } from "zustand";
-interface gameQueryType {
+export interface gameQuery {
   genreId?: number;
   platformID?: number;
   sortOrder?: string;
   searchText?: string;
 }
 interface QueryStore {
-  gameQuery: gameQueryType;
+  gameQuery: gameQuery;
   setGenreId: (id: number) => void;
   setPlatformId: (platformId: number) => void;
   setSortOrder: (order: string) => void;
   setSearchText: (search: string) => void;
 }
-const game = {
-  genreId: undefined,
-  platformID: undefined,
-  sortOrder: undefined,
-  searchText: undefined,
-};
 
 const useGameQuery = create<QueryStore>((set) => ({
-  gameQuery: game,
+  gameQuery: {},
   setGenreId: (gId) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, genreId: gId } })),
   setPlatformId: (pId) =>

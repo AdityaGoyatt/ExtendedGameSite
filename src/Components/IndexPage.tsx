@@ -11,8 +11,10 @@ import { Outlet } from "react-router-dom";
 const IndexPage = () => {
   return (
     <>
-      <NavBAr />
-      <Outlet />
+      <Box padding={5}>
+        <NavBAr />
+        <Outlet />
+      </Box>
     </>
   );
 };

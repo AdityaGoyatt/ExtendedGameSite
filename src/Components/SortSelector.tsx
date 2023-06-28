@@ -22,10 +22,7 @@ const SortSelector = () => {
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (
-          <MenuItem
-            key={order.value}
-            onClick={() => () => setSortOrder(order.value)}
-          >
+          <MenuItem key={order.value} onClick={() => setSortOrder(order.value)}>
             {order.label}
           </MenuItem>
         ))}

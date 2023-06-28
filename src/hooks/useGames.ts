@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import { genre } from "./useGenre";
-import { gameQuery } from "../App";
+import { gameQuery } from "../Components/storeQuery";
 import apiClient from "./apiClient";
 import { PlatformListItem } from "./usePlatforms";
 import { DataResult } from "./useApiFetch";
@@ -14,6 +14,7 @@ export interface game {
   metacritic: number;
   genres: Array<genre>;
   rating_top: number;
+  slug: string;
 }
 
 const useGame = (gameQuery: gameQuery) =>

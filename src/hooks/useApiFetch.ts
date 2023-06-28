@@ -17,6 +17,9 @@ class useApiFetch<T> {
       .get<DataResult<T>>(this.endpoint, config.params)
       .then((res) => res.data.results);
   };
+  get = (id: string) => {
+    return apiClient.get<T>(this.endpoint + "/" + id).then((res) => res.data);
+  };
 }
 
 export default useApiFetch;
