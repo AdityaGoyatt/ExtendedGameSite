@@ -5,6 +5,7 @@ import { gameQuery } from "../Components/storeQuery";
 import apiClient from "./apiClient";
 import { PlatformListItem } from "./usePlatforms";
 import { DataResult } from "./useApiFetch";
+import { Publisher } from "./usePublishers";
 
 export interface game {
   id: number;
@@ -14,7 +15,10 @@ export interface game {
   metacritic: number;
   genres: Array<genre>;
   rating_top: number;
+  publishers: Publisher[];
   slug: string;
+  description_raw: string;
+  rating: number;
 }
 
 const useGame = (gameQuery: gameQuery) =>
