@@ -1,4 +1,3 @@
-import { genre } from "./../hooks/useGenre";
 import { create } from "zustand";
 interface NameStore {
   headingNames: {

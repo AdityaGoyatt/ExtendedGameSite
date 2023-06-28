@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useApiFetch from "./useApiFetch";
-import apiClient from "./apiClient";
 
 interface gameData {
   rating: number;

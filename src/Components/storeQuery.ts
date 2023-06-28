@@ -1,5 +1,3 @@
-import { genre } from "./../hooks/useGenre";
-
 import { create } from "zustand";
 export interface gameQuery {
   genreId?: number;
