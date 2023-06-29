@@ -1,6 +1,5 @@
 import { Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import useGameDetails from "../hooks/useGameDetails";
 interface Props {
   children: string;
 }
@@ -14,7 +13,7 @@ const DescriptionBox = ({ children }: Props) => {
 
   return (
     <>
-      <Text paddingY={3}>
+      <Text>
         {displayString + "  "}
         <Button
           colorScheme="yellow"

@@ -1,5 +1,5 @@
 import { Box, Heading } from "@chakra-ui/react";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 interface Props {
   heading: string;
   children: ReactNode | ReactNode[];
