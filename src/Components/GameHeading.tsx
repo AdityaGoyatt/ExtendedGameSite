@@ -11,7 +11,7 @@ const GameHeading = () => {
   } Games`;
   return (
     <>
-      <Heading as="h1" marginBottom={7} fontSize={50}>
+      <Heading as="h1" marginBottom={7} paddingX={5} fontSize={50}>
         {dynamicHeading}
       </Heading>
     </>
