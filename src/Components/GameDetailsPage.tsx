@@ -12,14 +12,16 @@ const GameDetailsPage = () => {
   if (!data) return <Spinner></Spinner>;
   return (
     <>
-      <Heading size="lg">{data.name}</Heading>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} paddingY={4} spacing={4}>
-        <Box>
-          <DescriptionBox>{data.description_raw || ""}</DescriptionBox>
-          <Attributes data={data} />
-        </Box>
-        <SShots gameId={data.id.toString()}></SShots>
-      </SimpleGrid>
+      <Box padding={4}>
+        <Heading size="lg">{data.name}</Heading>
+        <SimpleGrid columns={{ base: 1, lg: 2 }} paddingY={4} spacing={4}>
+          <Box>
+            <DescriptionBox>{data.description_raw || ""}</DescriptionBox>
+            <Attributes data={data} />
+          </Box>
+          <SShots gameId={data.id.toString()}></SShots>
+        </SimpleGrid>
+      </Box>
     </>
   );
 };

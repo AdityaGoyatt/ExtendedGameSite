@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const IndexPage = () => {
   return (
     <>
-      <Box paddingY={5}>
+      <Box>
         <NavBAr />
         <Outlet />
       </Box>
